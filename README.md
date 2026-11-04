@@ -1,12 +1,28 @@
 # DSA Challenges — Python
 
-A practice and portfolio repository of **30 data structures and algorithms
-problems solved in clean, typed Python 3**, organised by topic.
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Tests](https://img.shields.io/badge/tests-50%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-50-orange.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+
+A practice and portfolio repository of **50 data structures and algorithms
+problems solved in clean, typed Python 3**, organised by topic — from
+foundations (arrays, hash maps, two pointers) through an **advanced tier**:
+system-design data structures (LRU cache), tries, weighted graph algorithms
+(Dijkstra, Bellman-Ford, Union-Find, topological sort), two-heap medians,
+and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a small `__main__` demo. A pytest suite covers all 30
-solutions.
+complexity, plus a `__main__` self-check. A pytest suite covers all 50
+solutions, and the companion docs distil the reusable patterns:
+
+- 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
+  sliding window, BFS/DFS, binary search on the answer, DP states,
+  Dijkstra, Union-Find, tries, monotonic stacks and heaps, with
+  when-to-use guidance.
+- 📊 **[Complexity Cheat Sheet](docs/COMPLEXITY.md)** — Big-O tables for the
+  core structures and every algorithm in the repo.
 
 > This is a personal practice / portfolio repository built for interview
 > preparation and skill development. It is not a record of submissions on
@@ -18,10 +34,11 @@ I'm Samrat Banerjee — a BCA (Hons) graduate with a finance focus
 (equity research, quantitative projects, and an MBA in Financial
 Management in progress). This repository is the algorithms side of that
 profile: the patterns below — two pointers, sliding window, binary
-search, heaps, dynamic programming — are the same patterns that show up
-in screening rounds for analyst, research, and finance-tech roles.
+search, heaps, dynamic programming, graph algorithms — are the same
+patterns that show up in screening rounds for analyst, research, and
+finance-tech roles.
 
-## Problems
+## Problems — Foundations (1–30)
 
 | # | Problem | Topic | Difficulty | Time | Space |
 |---|---------|-------|------------|------|-------|
@@ -56,6 +73,35 @@ in screening rounds for analyst, research, and finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
+## Problems — Advanced (31–50)
+
+The advanced tier targets the patterns that separate screening rounds from
+final rounds: designing data structures under strict complexity budgets,
+weighted graph algorithms, and DP where the state definition is the problem.
+
+| # | Problem | Topic | Difficulty | Time | Space |
+|---|---------|-------|------------|------|-------|
+| 31 | LRU Cache | Design | Medium | O(1) get/put | O(capacity) |
+| 32 | Min Stack | Design | Medium | O(1) all ops | O(n) |
+| 33 | Implement Trie (Prefix Tree) | Tries | Medium | O(L) per op | O(total chars) |
+| 34 | Word Search II | Tries | Hard | O(m·n·4^L) worst | O(total chars) |
+| 35 | Dijkstra's Shortest Path | Advanced Graphs | Medium | O((V+E) log V) | O(V+E) |
+| 36 | Network Delay Time | Advanced Graphs | Medium | O((V+E) log V) | O(V+E) |
+| 37 | Course Schedule (Topological Sort) | Advanced Graphs | Medium | O(V+E) | O(V+E) |
+| 38 | Redundant Connection (Union-Find) | Advanced Graphs | Medium | O(n·α(n)) | O(n) |
+| 39 | Cheapest Flights Within K Stops (Bellman-Ford) | Advanced Graphs | Medium | O(k·E) | O(V) |
+| 40 | Find Median from Data Stream (Two Heaps) | Heap | Hard | O(log n) add, O(1) median | O(n) |
+| 41 | Merge K Sorted Lists | Heap | Hard | O(N log k) | O(k) |
+| 42 | Sliding Window Maximum (Monotonic Deque) | Sliding Window | Hard | O(n) | O(k) |
+| 43 | Longest Increasing Subsequence | Advanced DP | Medium | O(n log n) | O(n) |
+| 44 | Edit Distance | Advanced DP | Medium | O(m·n) | O(n) |
+| 45 | 0/1 Knapsack | Advanced DP | Medium | O(n·capacity) | O(capacity) |
+| 46 | Word Break | Advanced DP | Medium | O(n·L) | O(n) |
+| 47 | KMP Pattern Search | Strings | Hard | O(n+m) | O(m) |
+| 48 | Longest Palindromic Substring | Strings | Medium | O(n²) | O(1) extra |
+| 49 | Serialize and Deserialize Binary Tree | Trees | Hard | O(n) | O(n) |
+| 50 | Binary Tree Maximum Path Sum | Trees | Hard | O(n) | O(h) |
+
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
 
@@ -64,19 +110,27 @@ well-known problem patterns.
 ```
 dsa-challenges-python/
 ├── arrays/               # Kadane's, prefix/suffix products, rotation, stock profit
-├── strings/              # anagrams, prefixes, word manipulation
+├── strings/              # anagrams, prefixes, KMP search, palindromic substrings
 ├── hashmaps/             # two sum, grouping by canonical key
 ├── two_pointers/         # palindrome, container, 3Sum
-├── sliding_window/       # longest substring, minimum window
+├── sliding_window/       # longest/minimum window, monotonic-deque maximum
 ├── binary_search/        # classic + rotated array
 ├── stack/                # parentheses, monotonic stack
 ├── linked_list/          # reversal, merging (with ListNode helpers)
-├── trees/                # depth, inversion, BFS level order (with TreeNode)
+├── trees/                # depth, inversion, BFS order, serialization, max path sum
 ├── graphs/               # island counting, flood fill (grid DFS)
-├── heap/                 # kth largest, top-k frequent
+├── heap/                 # kth largest, top-k, merge K lists, two-heap median
 ├── dynamic_programming/  # stairs, coin change, house robber
+├── design/               # LRU cache (hash map + doubly linked list), min stack
+├── tries/                # trie implementation, word search II
+├── advanced_graphs/      # Dijkstra, Bellman-Ford, Kahn topo sort, union-find
+├── advanced_dp/          # LIS O(n log n), edit distance, knapsack, word break
+├── docs/
+│   ├── PATTERNS.md       # reusable pattern templates + when to use each
+│   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    └── test_solutions.py # pytest suite covering all 30 solutions
+    ├── test_solutions.py # pytest suite: problems 1–30
+    └── test_advanced.py  # pytest suite: problems 31–50
 ```
 
 ## Run the tests
@@ -92,7 +146,8 @@ Run any single solution directly, e.g.:
 
 ```bash
 python arrays/max_subarray.py
-python dynamic_programming/coin_change.py
+python design/lru_cache.py
+python advanced_graphs/dijkstra.py
 ```
 
 ## Learning roadmap
@@ -106,18 +161,25 @@ How this set was built, and a sensible order to study it in:
 5. **Hierarchies & grids** — Trees (DFS + BFS), Graphs (grid DFS)
 6. **Selection problems** — Heap / top-k patterns
 7. **Optimisation** — Dynamic Programming (1-D DP first: stairs, robber, coins)
+8. **Design** — LRU Cache and Min Stack: data structures under O(1) budgets
+9. **String algorithms** — Trie, KMP, expand-around-centre palindromes
+10. **Weighted graphs** — Dijkstra, Bellman-Ford, Union-Find, topological sort
+11. **Advanced DP** — state design: LIS, edit distance, knapsack, word break
 
 **Next steps I plan to add:** interval problems, backtracking
-(subsets / permutations), trie, and graph shortest paths (Dijkstra),
-plus timed re-solves of the Medium/Hard problems above.
+(subsets / permutations / N-Queens), segment tree / BIT, and timed
+re-solves of the Hard problems above.
 
 ## Notes on style
 
 - Type hints on every function; `from __future__ import annotations`.
-- No platform-specific `Solution` class wrappers — plain functions that
-  can be imported, tested, and reused.
+- No platform-specific `Solution` class wrappers — plain functions and
+  small classes that can be imported, tested, and reused.
 - Linked-list and tree solutions include small node definitions and
   builder helpers so they run standalone.
+- Advanced solutions state *why* the algorithm works (invariants, pruning,
+  ordering tricks), not just what it does — see the knapsack descending-loop
+  and bounded Bellman-Ford notes.
 
 ## License
 
