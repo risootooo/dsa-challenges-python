@@ -245,6 +245,24 @@ def test_flood_fill():
     assert image == [[1, 1, 1], [1, 1, 0], [1, 0, 1]]
 
 
+def test_clone_graph():
+    mod = load("graphs/clone_graph.py")
+    assert mod.clone_graph(None) is None
+    n1, n2, n3, n4 = mod.Node(1), mod.Node(2), mod.Node(3), mod.Node(4)
+    n1.neighbors, n2.neighbors = [n2, n4], [n1, n3]
+    n3.neighbors, n4.neighbors = [n2, n4], [n1, n3]
+    copy_root = mod.clone_graph(n1)
+    # Same structure, brand-new objects
+    assert copy_root is not n1 and copy_root.val == 1
+    assert sorted(n.val for n in copy_root.neighbors) == [2, 4]
+    copied_two = next(n for n in copy_root.neighbors if n.val == 2)
+    assert copied_two is not n2
+    assert sorted(n.val for n in copied_two.neighbors) == [1, 3]
+    # Deep copy: mutating the clone leaves the original untouched
+    copied_two.val = 99
+    assert n2.val == 2
+
+
 # --- Heap ------------------------------------------------------------------
 
 def test_kth_largest_element():
@@ -280,3 +298,19 @@ def test_house_robber():
     assert mod.rob([1, 2, 3, 1]) == 4
     assert mod.rob([2, 7, 9, 3, 1]) == 12
     assert mod.rob([]) == 0
+
+
+def test_longest_common_subsequence():
+    mod = load("dynamic_programming/longest_common_subsequence.py")
+    assert mod.longest_common_subsequence("abcde", "ace") == 3
+    assert mod.longest_common_subsequence("abc", "def") == 0
+    assert mod.longest_common_subsequence("abc", "abc") == 3
+    assert mod.longest_common_subsequence("", "abc") == 0
+    assert mod.longest_common_subsequence("AGGTAB", "GXTXAYB") == 4
+    # Reconstruction returns a real common subsequence of optimal length
+    sub = mod.lcs_string("abcde", "ace")
+    assert sub == "ace"
+    sub2 = mod.lcs_string("AGGTAB", "GXTXAYB")
+    assert len(sub2) == 4
+    it = iter("AGGTAB")
+    assert all(ch in it for ch in sub2)  # subsequence of text1, in order

@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-50%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-50-orange.svg)
+![Tests](https://img.shields.io/badge/tests-52%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-52-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **50 data structures and algorithms
+A practice and portfolio repository of **52 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 50
+complexity, plus a `__main__` self-check. A pytest suite covers all 52
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–50)
+## Problems — Advanced (31–52)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -101,6 +101,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 48 | Longest Palindromic Substring | Strings | Medium | O(n²) | O(1) extra |
 | 49 | Serialize and Deserialize Binary Tree | Trees | Hard | O(n) | O(n) |
 | 50 | Binary Tree Maximum Path Sum | Trees | Hard | O(n) | O(h) |
+| 51 | Clone Graph | Graphs | Medium | O(V+E) | O(V) |
+| 52 | Longest Common Subsequence | Dynamic Programming | Medium | O(m·n) | O(min(m,n)) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
