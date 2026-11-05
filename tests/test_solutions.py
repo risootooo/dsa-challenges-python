@@ -314,3 +314,33 @@ def test_longest_common_subsequence():
     assert len(sub2) == 4
     it = iter("AGGTAB")
     assert all(ch in it for ch in sub2)  # subsequence of text1, in order
+
+
+def test_validate_binary_search_tree():
+    mod = load("trees/validate_binary_search_tree.py")
+    assert mod.is_valid_bst(mod.TreeNode(2, mod.TreeNode(1), mod.TreeNode(3))) is True
+    invalid = mod.TreeNode(5, mod.TreeNode(1), mod.TreeNode(4, mod.TreeNode(3), mod.TreeNode(6)))
+    assert mod.is_valid_bst(invalid) is False
+    # Equal values are not allowed on either side (strict ordering)
+    assert mod.is_valid_bst(mod.TreeNode(2, mod.TreeNode(2))) is False
+    assert mod.is_valid_bst(mod.TreeNode(2, None, mod.TreeNode(2))) is False
+    # A node valid against its parent but violating an ancestor's bound
+    tricky = mod.TreeNode(10, mod.TreeNode(5), mod.TreeNode(15, mod.TreeNode(6), mod.TreeNode(20)))
+    assert mod.is_valid_bst(tricky) is False
+    assert mod.is_valid_bst(None) is True
+    assert mod.is_valid_bst(mod.TreeNode(1)) is True
+
+
+def test_search_a_2d_matrix():
+    mod = load("binary_search/search_a_2d_matrix.py")
+    grid = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
+    assert mod.search_matrix(grid, 3) is True
+    assert mod.search_matrix(grid, 13) is False
+    assert mod.search_matrix(grid, 1) is True
+    assert mod.search_matrix(grid, 60) is True
+    assert mod.search_matrix(grid, 0) is False
+    assert mod.search_matrix(grid, 61) is False
+    assert mod.search_matrix([[1]], 1) is True
+    assert mod.search_matrix([[1]], 2) is False
+    assert mod.search_matrix([], 1) is False
+    assert mod.search_matrix([[]], 1) is False

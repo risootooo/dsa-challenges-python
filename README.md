@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-52%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-52-orange.svg)
+![Tests](https://img.shields.io/badge/tests-54%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-54-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **52 data structures and algorithms
+A practice and portfolio repository of **54 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 52
+complexity, plus a `__main__` self-check. A pytest suite covers all 54
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–52)
+## Problems — Advanced (31–54)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -103,6 +103,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 50 | Binary Tree Maximum Path Sum | Trees | Hard | O(n) | O(h) |
 | 51 | Clone Graph | Graphs | Medium | O(V+E) | O(V) |
 | 52 | Longest Common Subsequence | Dynamic Programming | Medium | O(m·n) | O(min(m,n)) |
+| 53 | Validate Binary Search Tree | Trees | Medium | O(n) | O(h) |
+| 54 | Search a 2D Matrix | Binary Search | Medium | O(log(m·n)) | O(1) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -116,10 +118,10 @@ dsa-challenges-python/
 ├── hashmaps/             # two sum, grouping by canonical key
 ├── two_pointers/         # palindrome, container, 3Sum
 ├── sliding_window/       # longest/minimum window, monotonic-deque maximum
-├── binary_search/        # classic + rotated array
+├── binary_search/        # classic, rotated array, 2D matrix
 ├── stack/                # parentheses, monotonic stack
 ├── linked_list/          # reversal, merging (with ListNode helpers)
-├── trees/                # depth, inversion, BFS order, serialization, max path sum
+├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation
 ├── graphs/               # island counting, flood fill (grid DFS)
 ├── heap/                 # kth largest, top-k, merge K lists, two-heap median
 ├── dynamic_programming/  # stairs, coin change, house robber
