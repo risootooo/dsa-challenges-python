@@ -344,3 +344,34 @@ def test_search_a_2d_matrix():
     assert mod.search_matrix([[1]], 2) is False
     assert mod.search_matrix([], 1) is False
     assert mod.search_matrix([[]], 1) is False
+
+
+def test_rotting_oranges():
+    mod = load("graphs/rotting_oranges.py")
+    grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
+    assert mod.oranges_rotting(grid) == 4
+    # Input must not be mutated
+    assert grid == [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
+    # A fresh orange walled off by empties can never rot
+    assert mod.oranges_rotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]]) == -1
+    assert mod.oranges_rotting([[0, 2]]) == 0
+    assert mod.oranges_rotting([[1]]) == -1
+    assert mod.oranges_rotting([[2]]) == 0
+    assert mod.oranges_rotting([[0]]) == 0
+    assert mod.oranges_rotting([]) == 0
+    assert mod.oranges_rotting([[2, 1], [1, 1]]) == 2
+
+
+def test_decode_ways():
+    mod = load("dynamic_programming/decode_ways.py")
+    assert mod.num_decodings("12") == 2
+    assert mod.num_decodings("226") == 3
+    assert mod.num_decodings("11106") == 2
+    assert mod.num_decodings("10") == 1
+    assert mod.num_decodings("27") == 1
+    assert mod.num_decodings("1") == 1
+    # No-solution / invalid encodings
+    assert mod.num_decodings("06") == 0
+    assert mod.num_decodings("0") == 0
+    assert mod.num_decodings("100") == 0
+    assert mod.num_decodings("") == 0
