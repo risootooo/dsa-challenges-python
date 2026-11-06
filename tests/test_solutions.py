@@ -375,3 +375,43 @@ def test_decode_ways():
     assert mod.num_decodings("0") == 0
     assert mod.num_decodings("100") == 0
     assert mod.num_decodings("") == 0
+
+
+def test_course_schedule_ii():
+    mod = load("advanced_graphs/course_schedule_ii.py")
+
+    def is_valid(order, n, prereqs):
+        if len(order) != n or sorted(order) != list(range(n)):
+            return False
+        pos = {c: i for i, c in enumerate(order)}
+        return all(pos[b] < pos[a] for a, b in prereqs)
+
+    prereqs = [[1, 0], [2, 0], [3, 1], [3, 2]]
+    assert is_valid(mod.find_order(4, prereqs), 4, prereqs)
+    assert mod.find_order(2, [[1, 0]]) == [0, 1]
+    # No-solution: a cycle yields an empty list, never a partial order
+    assert mod.find_order(2, [[1, 0], [0, 1]]) == []
+    assert mod.find_order(3, [[0, 1], [1, 2], [2, 0]]) == []
+    # Edge cases: no prerequisites, single course, no courses
+    assert is_valid(mod.find_order(3, []), 3, [])
+    assert mod.find_order(1, []) == [0]
+    assert mod.find_order(0, []) == []
+
+
+def test_binary_tree_right_side_view():
+    mod = load("trees/binary_tree_right_side_view.py")
+    tree = mod.TreeNode(
+        1,
+        mod.TreeNode(2, None, mod.TreeNode(5)),
+        mod.TreeNode(3, None, mod.TreeNode(4)),
+    )
+    assert mod.right_side_view(tree) == [1, 3, 4]
+    assert mod.right_side_view(mod.TreeNode(1, None, mod.TreeNode(3))) == [1, 3]
+    # A deeper left subtree shows through where the right side ends
+    deep_left = mod.TreeNode(1, mod.TreeNode(2, mod.TreeNode(4)), mod.TreeNode(3))
+    assert mod.right_side_view(deep_left) == [1, 3, 4]
+    # Edge cases: empty tree, single node, left spine only
+    assert mod.right_side_view(None) == []
+    assert mod.right_side_view(mod.TreeNode(1)) == [1]
+    spine = mod.TreeNode(1, mod.TreeNode(2, mod.TreeNode(3)))
+    assert mod.right_side_view(spine) == [1, 2, 3]

@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-56%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-56-orange.svg)
+![Tests](https://img.shields.io/badge/tests-58%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-58-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **56 data structures and algorithms
+A practice and portfolio repository of **58 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 56
+complexity, plus a `__main__` self-check. A pytest suite covers all 58
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–56)
+## Problems — Advanced (31–58)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -107,6 +107,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 54 | Search a 2D Matrix | Binary Search | Medium | O(log(m·n)) | O(1) |
 | 55 | Rotting Oranges | Graphs | Medium | O(rows·cols) | O(rows·cols) |
 | 56 | Decode Ways | Dynamic Programming | Medium | O(n) | O(1) |
+| 57 | Course Schedule II | Advanced Graphs | Medium | O(V+E) | O(V+E) |
+| 58 | Binary Tree Right Side View | Trees | Medium | O(n) | O(n) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
