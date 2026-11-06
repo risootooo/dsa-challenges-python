@@ -398,6 +398,53 @@ def test_course_schedule_ii():
     assert mod.find_order(0, []) == []
 
 
+def test_pacific_atlantic_water_flow():
+    mod = load("graphs/pacific_atlantic_water_flow.py")
+    heights = [
+        [1, 2, 2, 3, 5],
+        [3, 2, 3, 4, 4],
+        [2, 4, 5, 3, 1],
+        [6, 7, 1, 4, 5],
+        [5, 1, 1, 2, 4],
+    ]
+    assert mod.pacific_atlantic(heights) == [
+        [0, 4],
+        [1, 3],
+        [1, 4],
+        [2, 2],
+        [3, 0],
+        [3, 1],
+        [4, 0],
+    ]
+    # Single cell touches both oceans; a flat plateau drains everywhere
+    assert mod.pacific_atlantic([[1]]) == [[0, 0]]
+    assert mod.pacific_atlantic([[1, 1], [1, 1]]) == [[0, 0], [0, 1], [1, 0], [1, 1]]
+    # Strictly rising towards the Atlantic corner: only that corner
+    # and the Pacific borders that can climb to it qualify
+    assert mod.pacific_atlantic([[2, 1], [1, 2]]) == [[0, 0], [0, 1], [1, 0], [1, 1]]
+    assert mod.pacific_atlantic([]) == []
+    assert mod.pacific_atlantic([[]]) == []
+
+
+def test_lowest_common_ancestor():
+    mod = load("trees/lowest_common_ancestor.py")
+    n7, n4 = mod.TreeNode(7), mod.TreeNode(4)
+    n6, n2 = mod.TreeNode(6), mod.TreeNode(2, n7, n4)
+    n5, n1 = mod.TreeNode(5, n6, n2), mod.TreeNode(1, mod.TreeNode(0), mod.TreeNode(8))
+    root = mod.TreeNode(3, n5, n1)
+    assert mod.lowest_common_ancestor(root, n5, n1) is root
+    # A node is its own descendant: ancestor on the path wins
+    assert mod.lowest_common_ancestor(root, n5, n4) is n5
+    assert mod.lowest_common_ancestor(root, n7, n4) is n2
+    assert mod.lowest_common_ancestor(root, n6, n4) is n5
+    assert mod.lowest_common_ancestor(root, root, n4) is root
+    # Edge cases: empty tree, same node twice, single-node tree
+    assert mod.lowest_common_ancestor(None, n5, n1) is None
+    assert mod.lowest_common_ancestor(root, n5, n5) is n5
+    solo = mod.TreeNode(1)
+    assert mod.lowest_common_ancestor(solo, solo, solo) is solo
+
+
 def test_binary_tree_right_side_view():
     mod = load("trees/binary_tree_right_side_view.py")
     tree = mod.TreeNode(
