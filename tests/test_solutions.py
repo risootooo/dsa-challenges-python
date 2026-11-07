@@ -462,3 +462,44 @@ def test_binary_tree_right_side_view():
     assert mod.right_side_view(mod.TreeNode(1)) == [1]
     spine = mod.TreeNode(1, mod.TreeNode(2, mod.TreeNode(3)))
     assert mod.right_side_view(spine) == [1, 2, 3]
+
+
+# --- Intervals -------------------------------------------------------------
+
+def test_merge_intervals():
+    mod = load("intervals/merge_intervals.py")
+    assert mod.merge_intervals([[1, 3], [2, 6], [8, 10], [15, 18]]) == [
+        [1, 6],
+        [8, 10],
+        [15, 18],
+    ]
+    # Touching endpoints merge
+    assert mod.merge_intervals([[1, 4], [4, 5]]) == [[1, 5]]
+    # Unsorted input comes back sorted; nested intervals are absorbed
+    assert mod.merge_intervals([[8, 10], [1, 3], [2, 6]]) == [[1, 6], [8, 10]]
+    assert mod.merge_intervals([[1, 10], [2, 3], [4, 5]]) == [[1, 10]]
+    assert mod.merge_intervals([[1, 4], [5, 6]]) == [[1, 4], [5, 6]]
+    # Edge cases: single interval, empty input
+    assert mod.merge_intervals([[1, 4]]) == [[1, 4]]
+    assert mod.merge_intervals([]) == []
+    # Input must not be mutated
+    data = [[2, 6], [1, 3]]
+    mod.merge_intervals(data)
+    assert data == [[2, 6], [1, 3]]
+
+
+# --- Backtracking ----------------------------------------------------------
+
+def test_combination_sum():
+    mod = load("backtracking/combination_sum.py")
+    assert mod.combination_sum([2, 3, 6, 7], 7) == [[2, 2, 3], [7]]
+    assert mod.combination_sum([2, 3, 5], 8) == [[2, 2, 2, 2], [2, 3, 3], [3, 5]]
+    # Input order does not change the combinations produced
+    assert mod.combination_sum([7, 2, 6, 3], 7) == [[2, 2, 3], [7]]
+    # No-solution: no combination reaches the target
+    assert mod.combination_sum([2], 1) == []
+    assert mod.combination_sum([4, 6], 5) == []
+    # Edge cases: single exact candidate, empty candidates, zero target
+    assert mod.combination_sum([5], 5) == [[5]]
+    assert mod.combination_sum([], 5) == []
+    assert mod.combination_sum([2, 3], 0) == [[]]
