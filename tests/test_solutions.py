@@ -503,3 +503,48 @@ def test_combination_sum():
     assert mod.combination_sum([5], 5) == [[5]]
     assert mod.combination_sum([], 5) == []
     assert mod.combination_sum([2, 3], 0) == [[]]
+
+
+def test_insert_interval():
+    mod = load("intervals/insert_interval.py")
+    assert mod.insert_interval([[1, 3], [6, 9]], [2, 5]) == [[1, 5], [6, 9]]
+    assert mod.insert_interval(
+        [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]], [4, 8]
+    ) == [[1, 2], [3, 10], [12, 16]]
+    # Disjoint inserts at the head, middle and tail keep the sort order
+    assert mod.insert_interval([[3, 4], [6, 7]], [1, 2]) == [[1, 2], [3, 4], [6, 7]]
+    assert mod.insert_interval([[1, 2], [6, 7]], [3, 4]) == [[1, 2], [3, 4], [6, 7]]
+    assert mod.insert_interval([[1, 2], [3, 4]], [6, 7]) == [[1, 2], [3, 4], [6, 7]]
+    # Touching endpoints merge; a covering interval absorbs everything
+    assert mod.insert_interval([[1, 3], [5, 7]], [3, 5]) == [[1, 7]]
+    assert mod.insert_interval([[2, 3], [5, 6]], [1, 10]) == [[1, 10]]
+    # Edge cases: empty list, single interval
+    assert mod.insert_interval([], [5, 7]) == [[5, 7]]
+    assert mod.insert_interval([[1, 2]], [3, 4]) == [[1, 2], [3, 4]]
+    # Inputs must not be mutated
+    data, new = [[1, 3], [6, 9]], [2, 5]
+    mod.insert_interval(data, new)
+    assert data == [[1, 3], [6, 9]] and new == [2, 5]
+
+
+def test_permutations():
+    mod = load("backtracking/permutations.py")
+    assert mod.permute([1, 2, 3]) == [
+        [1, 2, 3],
+        [1, 3, 2],
+        [2, 1, 3],
+        [2, 3, 1],
+        [3, 1, 2],
+        [3, 2, 1],
+    ]
+    assert mod.permute([0, 1]) == [[0, 1], [1, 0]]
+    # Count check: 4 distinct values give 4! unique orderings
+    perms = mod.permute([1, 2, 3, 4])
+    assert len(perms) == 24 and len({tuple(p) for p in perms}) == 24
+    # Edge cases: single element, empty input
+    assert mod.permute([1]) == [[1]]
+    assert mod.permute([]) == [[]]
+    # Input order drives output order; input itself is not mutated
+    data = [2, 1]
+    assert mod.permute(data) == [[2, 1], [1, 2]]
+    assert data == [2, 1]
