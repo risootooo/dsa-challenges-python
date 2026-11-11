@@ -527,6 +527,58 @@ def test_insert_interval():
     assert data == [[1, 3], [6, 9]] and new == [2, 5]
 
 
+def test_word_search():
+    mod = load("backtracking/word_search.py")
+    sample = [
+        ["A", "B", "C", "E"],
+        ["S", "F", "C", "S"],
+        ["A", "D", "E", "E"],
+    ]
+    assert mod.exist([row[:] for row in sample], "ABCCED") is True
+    assert mod.exist([row[:] for row in sample], "SEE") is True
+    # No-solution: a cell cannot be reused within one word
+    assert mod.exist([row[:] for row in sample], "ABCB") is False
+    # Board is restored after the search
+    board = [row[:] for row in sample]
+    mod.exist(board, "ABCCED")
+    assert board == sample
+    # Edge cases: single cell, empty board, empty word, word longer than grid
+    assert mod.exist([["a"]], "a") is True
+    assert mod.exist([["a"]], "b") is False
+    assert mod.exist([], "a") is False
+    assert mod.exist([[]], "a") is False
+    assert mod.exist([["a"]], "") is False
+    assert mod.exist([["a", "b"]], "abc") is False
+
+
+def test_kth_smallest_in_bst():
+    mod = load("trees/kth_smallest_in_bst.py")
+    tree = mod.TreeNode(3, mod.TreeNode(1, None, mod.TreeNode(2)), mod.TreeNode(4))
+    assert mod.kth_smallest(tree, 1) == 1
+    assert mod.kth_smallest(tree, 2) == 2
+    assert mod.kth_smallest(tree, 4) == 4
+    larger = mod.TreeNode(
+        5,
+        mod.TreeNode(3, mod.TreeNode(2, mod.TreeNode(1)), mod.TreeNode(4)),
+        mod.TreeNode(6),
+    )
+    assert mod.kth_smallest(larger, 3) == 3
+    assert mod.kth_smallest(larger, 6) == 6
+    # Edge cases: single node, left spine only
+    assert mod.kth_smallest(mod.TreeNode(1), 1) == 1
+    spine = mod.TreeNode(3, mod.TreeNode(2, mod.TreeNode(1)))
+    assert mod.kth_smallest(spine, 3) == 3
+    # Out-of-range k raises instead of returning a wrong value
+    import pytest
+
+    with pytest.raises(ValueError):
+        mod.kth_smallest(None, 1)
+    with pytest.raises(ValueError):
+        mod.kth_smallest(tree, 0)
+    with pytest.raises(ValueError):
+        mod.kth_smallest(tree, 5)
+
+
 def test_permutations():
     mod = load("backtracking/permutations.py")
     assert mod.permute([1, 2, 3]) == [
