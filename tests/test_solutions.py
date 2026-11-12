@@ -600,3 +600,41 @@ def test_permutations():
     data = [2, 1]
     assert mod.permute(data) == [[2, 1], [1, 2]]
     assert data == [2, 1]
+
+
+def test_time_based_key_value_store():
+    mod = load("design/time_based_key_value_store.py")
+    store = mod.TimeMap()
+    store.set("foo", "bar", 1)
+    assert store.get("foo", 1) == "bar"
+    assert store.get("foo", 3) == "bar"
+    store.set("foo", "bar2", 4)
+    assert store.get("foo", 4) == "bar2"
+    assert store.get("foo", 5) == "bar2"
+    # Before the first version, and for unknown keys, the result is ""
+    assert store.get("foo", 0) == ""
+    assert store.get("missing", 10) == ""
+    # Keys are independent; an in-between timestamp floors to the prior set
+    store.set("love", "high", 10)
+    store.set("love", "low", 20)
+    assert store.get("love", 15) == "high"
+    assert store.get("love", 20) == "low"
+    assert store.get("foo", 5) == "bar2"
+    # A fresh store has nothing for any key
+    assert mod.TimeMap().get("anything", 100) == ""
+
+
+def test_task_scheduler():
+    mod = load("heap/task_scheduler.py")
+    assert mod.least_interval(["A", "A", "A", "B", "B", "B"], 2) == 8
+    assert mod.least_interval(["A", "A", "A", "B", "B", "B"], 3) == 10
+    assert mod.least_interval(["A", "C", "A", "B", "D", "B"], 1) == 6
+    assert mod.least_interval(["A", "A", "B", "B", "C", "C"], 1) == 6
+    # No cooling: every slot is work
+    assert mod.least_interval(["A", "A", "A", "B", "B", "B"], 0) == 6
+    # A single repeated task forces (count - 1) * (n + 1) + 1 slots
+    assert mod.least_interval(["A", "A", "A"], 2) == 7
+    assert mod.least_interval(["A", "A"], 2) == 4
+    # Edge cases: empty input, single task
+    assert mod.least_interval([], 2) == 0
+    assert mod.least_interval(["A"], 5) == 1
