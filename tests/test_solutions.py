@@ -638,3 +638,43 @@ def test_task_scheduler():
     # Edge cases: empty input, single task
     assert mod.least_interval([], 2) == 0
     assert mod.least_interval(["A"], 5) == 1
+
+
+def test_rotate_image():
+    mod = load("arrays/rotate_image.py")
+    data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    mod.rotate_image(data)
+    assert data == [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+    larger = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
+    mod.rotate_image(larger)
+    assert larger == [[15, 13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7, 10, 11]]
+    # Rotating four times restores the original matrix
+    spun = [[1, 2], [3, 4]]
+    for _ in range(4):
+        mod.rotate_image(spun)
+    assert spun == [[1, 2], [3, 4]]
+    # Edge cases: empty matrix, single cell
+    empty = []
+    mod.rotate_image(empty)
+    assert empty == []
+    single = [[1]]
+    mod.rotate_image(single)
+    assert single == [[1]]
+
+
+def test_meeting_rooms():
+    mod = load("intervals/meeting_rooms.py")
+    assert mod.can_attend_meetings([[0, 30], [5, 10], [15, 20]]) is False
+    assert mod.can_attend_meetings([[7, 10], [2, 4]]) is True
+    # Touching endpoints do not overlap
+    assert mod.can_attend_meetings([[0, 5], [5, 10], [10, 15]]) is True
+    # Unsorted input; a fully nested meeting still overlaps
+    assert mod.can_attend_meetings([[15, 20], [0, 30]]) is False
+    assert mod.can_attend_meetings([[1, 10], [2, 3]]) is False
+    # Edge cases: empty input, single meeting
+    assert mod.can_attend_meetings([]) is True
+    assert mod.can_attend_meetings([[1, 4]]) is True
+    # Input must not be mutated
+    data = [[7, 10], [2, 4]]
+    mod.can_attend_meetings(data)
+    assert data == [[7, 10], [2, 4]]
