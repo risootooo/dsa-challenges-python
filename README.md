@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-70%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-70-orange.svg)
+![Tests](https://img.shields.io/badge/tests-72%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-72-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **70 data structures and algorithms
+A practice and portfolio repository of **72 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 70
+complexity, plus a `__main__` self-check. A pytest suite covers all 72
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–70)
+## Problems — Advanced (31–72)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -121,6 +121,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 68 | Task Scheduler | Heap | Medium | O(T log k) | O(k) |
 | 69 | Rotate Image | Arrays | Medium | O(n²) | O(1) extra |
 | 70 | Meeting Rooms | Intervals | Easy | O(n log n) | O(n) |
+| 71 | Spiral Matrix | Arrays | Medium | O(m·n) | O(1) extra |
+| 72 | Set Matrix Zeroes | Arrays | Medium | O(m·n) | O(1) extra |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -129,7 +131,7 @@ well-known problem patterns.
 
 ```
 dsa-challenges-python/
-├── arrays/               # Kadane's, prefix/suffix products, rotation, stock profit, rotate image (transpose + reverse)
+├── arrays/               # Kadane's, prefix/suffix products, rotation, stock profit, rotate image (transpose + reverse), spiral order, set matrix zeroes
 ├── strings/              # anagrams, prefixes, KMP search, palindromic substrings
 ├── hashmaps/             # two sum, grouping by canonical key
 ├── two_pointers/         # palindrome, container, 3Sum
@@ -151,7 +153,7 @@ dsa-challenges-python/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–70 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–72 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 

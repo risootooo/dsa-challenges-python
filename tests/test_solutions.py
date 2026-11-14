@@ -678,3 +678,50 @@ def test_meeting_rooms():
     data = [[7, 10], [2, 4]]
     mod.can_attend_meetings(data)
     assert data == [[7, 10], [2, 4]]
+
+
+def test_spiral_matrix():
+    mod = load("arrays/spiral_matrix.py")
+    assert mod.spiral_order([[1, 2, 3], [4, 5, 6], [7, 8, 9]]) == [1, 2, 3, 6, 9, 8, 7, 4, 5]
+    assert mod.spiral_order([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]) == [
+        1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7,
+    ]
+    assert mod.spiral_order([[1, 2], [3, 4], [5, 6]]) == [1, 2, 4, 6, 5, 3]
+    assert mod.spiral_order([[1, 2, 3]]) == [1, 2, 3]
+    assert mod.spiral_order([[1], [2], [3]]) == [1, 2, 3]
+    # Edge cases: empty matrix, empty row, single cell
+    assert mod.spiral_order([]) == []
+    assert mod.spiral_order([[]]) == []
+    assert mod.spiral_order([[7]]) == [7]
+    # Input must not be mutated
+    data = [[1, 2], [3, 4]]
+    mod.spiral_order(data)
+    assert data == [[1, 2], [3, 4]]
+
+
+def test_set_matrix_zeroes():
+    mod = load("arrays/set_matrix_zeroes.py")
+    data = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
+    mod.set_zeroes(data)
+    assert data == [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
+    larger = [[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]]
+    mod.set_zeroes(larger)
+    assert larger == [[0, 0, 0, 0], [0, 4, 5, 0], [0, 3, 1, 0]]
+    # No zeroes: matrix is unchanged
+    clean = [[1, 2], [3, 4]]
+    mod.set_zeroes(clean)
+    assert clean == [[1, 2], [3, 4]]
+    # Zero in the first row / first column only
+    edge = [[0, 2], [3, 4]]
+    mod.set_zeroes(edge)
+    assert edge == [[0, 0], [0, 4]]
+    # Edge cases: empty matrix, single cell (zero and non-zero)
+    empty = []
+    mod.set_zeroes(empty)
+    assert empty == []
+    single = [[0]]
+    mod.set_zeroes(single)
+    assert single == [[0]]
+    one = [[5]]
+    mod.set_zeroes(one)
+    assert one == [[5]]
