@@ -725,3 +725,38 @@ def test_set_matrix_zeroes():
     one = [[5]]
     mod.set_zeroes(one)
     assert one == [[5]]
+
+
+def test_subsets():
+    mod = load("backtracking/subsets.py")
+    assert mod.subsets([1, 2, 3]) == [
+        [], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3],
+    ]
+    assert mod.subsets([0]) == [[], [0]]
+    # Count check: n distinct values give exactly 2^n subsets, no duplicates
+    result = mod.subsets([1, 2, 3, 4])
+    assert len(result) == 16
+    assert len({tuple(s) for s in result}) == 16
+    # Edge cases: empty input, single element
+    assert mod.subsets([]) == [[]]
+    assert mod.subsets([5]) == [[], [5]]
+    # Input must not be mutated
+    data = [2, 1]
+    assert mod.subsets(data) == [[], [2], [2, 1], [1]]
+    assert data == [2, 1]
+
+
+def test_partition_equal_subset_sum():
+    mod = load("advanced_dp/partition_equal_subset_sum.py")
+    assert mod.can_partition([1, 5, 11, 5]) is True
+    assert mod.can_partition([1, 2, 3, 5]) is False
+    assert mod.can_partition([1, 2, 5]) is False
+    assert mod.can_partition([2, 2, 3, 5]) is False
+    assert mod.can_partition([3, 3, 3, 4, 5]) is True
+    # Odd total can never be partitioned
+    assert mod.can_partition([1, 2, 4]) is False
+    # Edge cases: empty input, single element, two equal elements
+    assert mod.can_partition([]) is True
+    assert mod.can_partition([100]) is False
+    assert mod.can_partition([1, 1]) is True
+    assert mod.can_partition([2, 2]) is True
