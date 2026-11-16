@@ -760,3 +760,36 @@ def test_partition_equal_subset_sum():
     assert mod.can_partition([100]) is False
     assert mod.can_partition([1, 1]) is True
     assert mod.can_partition([2, 2]) is True
+
+
+def test_generate_parentheses():
+    mod = load("backtracking/generate_parentheses.py")
+    assert mod.generate_parenthesis(3) == ["((()))", "(()())", "(())()", "()(())", "()()()"]
+    assert mod.generate_parenthesis(1) == ["()"]
+    assert mod.generate_parenthesis(2) == ["(())", "()()"]
+    # Count is the nth Catalan number; every result is balanced and unique
+    result4 = mod.generate_parenthesis(4)
+    assert len(result4) == 14
+    assert len(set(result4)) == 14
+    assert all(len(s) == 8 for s in result4)
+    # Edge cases: zero pairs, negative input
+    assert mod.generate_parenthesis(0) == [""]
+    assert mod.generate_parenthesis(-1) == []
+
+
+def test_koko_eating_bananas():
+    mod = load("binary_search/koko_eating_bananas.py")
+    assert mod.min_eating_speed([3, 6, 7, 11], 8) == 4
+    assert mod.min_eating_speed([30, 11, 23, 4, 20], 5) == 30
+    assert mod.min_eating_speed([30, 11, 23, 4, 20], 6) == 23
+    assert mod.min_eating_speed([1, 1, 1, 999999999], 10) == 142857143
+    # Edge cases: empty input, single pile
+    assert mod.min_eating_speed([], 5) == 0
+    assert mod.min_eating_speed([5], 5) == 1
+    assert mod.min_eating_speed([5], 1) == 5
+    # No-solution: fewer hours than piles can never finish
+    assert mod.min_eating_speed([3, 6, 7, 11], 3) == -1
+    # Input must not be mutated
+    data = [3, 6, 7, 11]
+    mod.min_eating_speed(data, 8)
+    assert data == [3, 6, 7, 11]

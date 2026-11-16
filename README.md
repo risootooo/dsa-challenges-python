@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-74%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-74-orange.svg)
+![Tests](https://img.shields.io/badge/tests-76%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-76-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **74 data structures and algorithms
+A practice and portfolio repository of **76 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 74
+complexity, plus a `__main__` self-check. A pytest suite covers all 76
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–74)
+## Problems — Advanced (31–76)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -125,6 +125,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 72 | Set Matrix Zeroes | Arrays | Medium | O(m·n) | O(1) extra |
 | 73 | Subsets | Backtracking | Medium | O(n·2^n) | O(n) |
 | 74 | Partition Equal Subset Sum | Advanced DP | Medium | O(n·target) | O(target) |
+| 75 | Generate Parentheses | Backtracking | Medium | O(4^n / sqrt(n)) | O(n) |
+| 76 | Koko Eating Bananas | Binary Search | Medium | O(n·log(max)) | O(1) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -138,7 +140,7 @@ dsa-challenges-python/
 ├── hashmaps/             # two sum, grouping by canonical key
 ├── two_pointers/         # palindrome, container, 3Sum
 ├── sliding_window/       # longest/minimum window, monotonic-deque maximum
-├── binary_search/        # classic, rotated array, 2D matrix
+├── binary_search/        # classic, rotated array, 2D matrix, binary search on the answer (Koko)
 ├── stack/                # parentheses, monotonic stack
 ├── linked_list/          # reversal, merging (with ListNode helpers)
 ├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST
@@ -150,12 +152,12 @@ dsa-challenges-python/
 ├── advanced_graphs/      # Dijkstra, Bellman-Ford, Kahn topo sort, union-find
 ├── advanced_dp/          # LIS O(n log n), edit distance, knapsack, word break, partition equal subset sum (subset-sum DP)
 ├── intervals/            # merge intervals (sort + sweep), insert interval (three-phase sweep), meeting rooms (adjacent overlap check)
-├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS)
+├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS), generate parentheses (open/close-count DFS)
 ├── docs/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–74 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–76 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 
