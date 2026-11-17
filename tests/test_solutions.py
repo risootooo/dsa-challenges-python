@@ -793,3 +793,33 @@ def test_koko_eating_bananas():
     data = [3, 6, 7, 11]
     mod.min_eating_speed(data, 8)
     assert data == [3, 6, 7, 11]
+
+
+def test_non_overlapping_intervals():
+    mod = load("intervals/non_overlapping_intervals.py")
+    assert mod.erase_overlap_intervals([[1, 2], [2, 3], [3, 4], [1, 3]]) == 1
+    assert mod.erase_overlap_intervals([[1, 2], [1, 2], [1, 2]]) == 2
+    assert mod.erase_overlap_intervals([[1, 2], [2, 3]]) == 0
+    assert mod.erase_overlap_intervals([[1, 100], [11, 22], [1, 11], [2, 12]]) == 2
+    # Edge cases: empty input, single interval, touching endpoints
+    assert mod.erase_overlap_intervals([]) == 0
+    assert mod.erase_overlap_intervals([[1, 4]]) == 0
+    assert mod.erase_overlap_intervals([[3, 4], [1, 2], [2, 3]]) == 0
+    # Input must not be mutated
+    data = [[2, 3], [1, 2]]
+    mod.erase_overlap_intervals(data)
+    assert data == [[2, 3], [1, 2]]
+
+
+def test_longest_repeating_character_replacement():
+    mod = load("sliding_window/longest_repeating_character_replacement.py")
+    assert mod.character_replacement("ABAB", 2) == 4
+    assert mod.character_replacement("AABABBA", 1) == 4
+    assert mod.character_replacement("AAAA", 0) == 4
+    assert mod.character_replacement("ABCDE", 1) == 2
+    assert mod.character_replacement("BAAAB", 2) == 5
+    # Edge cases: empty string, single character
+    assert mod.character_replacement("", 3) == 0
+    assert mod.character_replacement("A", 0) == 1
+    # No-solution sentinel: a negative budget can never be satisfied
+    assert mod.character_replacement("ABAB", -1) == -1
