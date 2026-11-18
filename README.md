@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-78%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-78-orange.svg)
+![Tests](https://img.shields.io/badge/tests-80%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-80-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **78 data structures and algorithms
+A practice and portfolio repository of **80 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 78
+complexity, plus a `__main__` self-check. A pytest suite covers all 80
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–78)
+## Problems — Advanced (31–80)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -129,6 +129,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 76 | Koko Eating Bananas | Binary Search | Medium | O(n·log(max)) | O(1) |
 | 77 | Non-overlapping Intervals | Intervals | Medium | O(n log n) | O(n) |
 | 78 | Longest Repeating Character Replacement | Sliding Window | Medium | O(n) | O(1) extra |
+| 79 | Diameter of Binary Tree | Trees | Easy | O(n) | O(h) |
+| 80 | Unique Paths | Dynamic Programming | Medium | O(m·n) | O(n) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -145,10 +147,10 @@ dsa-challenges-python/
 ├── binary_search/        # classic, rotated array, 2D matrix, binary search on the answer (Koko)
 ├── stack/                # parentheses, monotonic stack
 ├── linked_list/          # reversal, merging (with ListNode helpers)
-├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST
+├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST, diameter
 ├── graphs/               # island counting, flood fill (grid DFS), rotting oranges (BFS), pacific-atlantic
 ├── heap/                 # kth largest, top-k, merge K lists, two-heap median, task scheduler
-├── dynamic_programming/  # stairs, coin change, house robber, LCS, decode ways
+├── dynamic_programming/  # stairs, coin change, house robber, LCS, decode ways, unique paths (grid DP)
 ├── design/               # LRU cache (hash map + doubly linked list), min stack, time-based key-value store
 ├── tries/                # trie implementation, word search II
 ├── advanced_graphs/      # Dijkstra, Bellman-Ford, Kahn topo sort, union-find
@@ -159,7 +161,7 @@ dsa-challenges-python/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–78 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–80 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 

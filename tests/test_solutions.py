@@ -823,3 +823,46 @@ def test_longest_repeating_character_replacement():
     assert mod.character_replacement("A", 0) == 1
     # No-solution sentinel: a negative budget can never be satisfied
     assert mod.character_replacement("ABAB", -1) == -1
+
+
+def test_diameter_of_binary_tree():
+    mod = load("trees/diameter_of_binary_tree.py")
+    tree = mod.TreeNode(
+        1,
+        mod.TreeNode(2, mod.TreeNode(4), mod.TreeNode(5)),
+        mod.TreeNode(3),
+    )
+    assert mod.diameter_of_binary_tree(tree) == 3
+    assert mod.diameter_of_binary_tree(mod.TreeNode(1, mod.TreeNode(2))) == 1
+    # Longest path need not pass through the root
+    skewed = mod.TreeNode(
+        1,
+        mod.TreeNode(
+            2,
+            mod.TreeNode(3, mod.TreeNode(4, mod.TreeNode(5))),
+            mod.TreeNode(6),
+        ),
+    )
+    assert mod.diameter_of_binary_tree(skewed) == 4
+    # Edge cases: empty tree, single node, straight chain
+    assert mod.diameter_of_binary_tree(None) == 0
+    assert mod.diameter_of_binary_tree(mod.TreeNode(1)) == 0
+    chain = mod.TreeNode(1, mod.TreeNode(2, mod.TreeNode(3, mod.TreeNode(4))))
+    assert mod.diameter_of_binary_tree(chain) == 3
+
+
+def test_unique_paths():
+    mod = load("dynamic_programming/unique_paths.py")
+    assert mod.unique_paths(3, 7) == 28
+    assert mod.unique_paths(3, 2) == 3
+    assert mod.unique_paths(3, 3) == 6
+    # Symmetry: transposing the grid cannot change the count
+    assert mod.unique_paths(7, 3) == 28
+    assert mod.unique_paths(4, 4) == 20
+    # Edge cases: single cell, single row/column, degenerate grids
+    assert mod.unique_paths(1, 1) == 1
+    assert mod.unique_paths(1, 10) == 1
+    assert mod.unique_paths(10, 1) == 1
+    assert mod.unique_paths(0, 5) == 0
+    assert mod.unique_paths(5, 0) == 0
+    assert mod.unique_paths(-2, 3) == 0
