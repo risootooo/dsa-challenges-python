@@ -866,3 +866,40 @@ def test_unique_paths():
     assert mod.unique_paths(0, 5) == 0
     assert mod.unique_paths(5, 0) == 0
     assert mod.unique_paths(-2, 3) == 0
+
+
+def test_longest_consecutive_sequence():
+    mod = load("hashmaps/longest_consecutive_sequence.py")
+    assert mod.longest_consecutive([100, 4, 200, 1, 3, 2]) == 4
+    assert mod.longest_consecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]) == 9
+    assert mod.longest_consecutive([1, 0, 1, 2]) == 3
+    assert mod.longest_consecutive([9, 8, 7, 6, 5]) == 5
+    # Edge cases: empty input, single element, duplicates, negatives
+    assert mod.longest_consecutive([]) == 0
+    assert mod.longest_consecutive([7]) == 1
+    assert mod.longest_consecutive([5, 5, 5]) == 1
+    assert mod.longest_consecutive([-3, -2, -1, 1, 2]) == 3
+    # No-solution analogue: no two values are consecutive
+    assert mod.longest_consecutive([10, 30, 50]) == 1
+    # Input must not be mutated
+    data = [100, 4, 200, 1, 3, 2]
+    mod.longest_consecutive(data)
+    assert data == [100, 4, 200, 1, 3, 2]
+
+
+def test_find_minimum_in_rotated_sorted_array():
+    mod = load("binary_search/find_minimum_in_rotated_sorted_array.py")
+    assert mod.find_min([3, 4, 5, 1, 2]) == 1
+    assert mod.find_min([4, 5, 6, 7, 0, 1, 2]) == 0
+    assert mod.find_min([11, 13, 15, 17]) == 11
+    assert mod.find_min([2, 3, 4, 5, 1]) == 1
+    assert mod.find_min([-5, -2, 0, -10, -7]) == -10
+    # Edge cases: empty input, single element, two elements
+    assert mod.find_min([]) is None
+    assert mod.find_min([1]) == 1
+    assert mod.find_min([2, 1]) == 1
+    assert mod.find_min([1, 2]) == 1
+    # Input must not be mutated
+    data = [4, 5, 6, 7, 0, 1, 2]
+    mod.find_min(data)
+    assert data == [4, 5, 6, 7, 0, 1, 2]
