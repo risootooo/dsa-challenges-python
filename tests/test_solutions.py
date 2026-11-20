@@ -903,3 +903,44 @@ def test_find_minimum_in_rotated_sorted_array():
     data = [4, 5, 6, 7, 0, 1, 2]
     mod.find_min(data)
     assert data == [4, 5, 6, 7, 0, 1, 2]
+
+
+def test_word_ladder():
+    mod = load("graphs/word_ladder.py")
+    words = ["hot", "dot", "dog", "lot", "log", "cog"]
+    assert mod.ladder_length("hit", "cog", words) == 5
+    assert mod.ladder_length("hit", "cog", ["hot", "dot", "tog", "cog"]) == 0
+    assert mod.ladder_length("a", "c", ["a", "b", "c"]) == 2
+    assert mod.ladder_length("hot", "dog", ["hot", "dog", "dot"]) == 3
+    # Edge cases: empty inputs, identical begin/end, end not in list
+    assert mod.ladder_length("", "cog", ["cog"]) == 0
+    assert mod.ladder_length("hit", "", ["hit"]) == 0
+    assert mod.ladder_length("hit", "hit", ["hit"]) == 0
+    assert mod.ladder_length("hit", "cog", []) == 0
+    assert mod.ladder_length("hit", "cog", ["hot", "dot", "dog", "lot", "log"]) == 0
+    # Input must not be mutated
+    data = ["hot", "dot", "dog", "lot", "log", "cog"]
+    mod.ladder_length("hit", "cog", data)
+    assert data == ["hot", "dot", "dog", "lot", "log", "cog"]
+
+
+def test_n_queens():
+    mod = load("backtracking/n_queens.py")
+    assert mod.solve_n_queens(4) == [
+        [".Q..", "...Q", "Q...", "..Q."],
+        ["..Q.", "Q...", "...Q", ".Q.."],
+    ]
+    assert mod.solve_n_queens(1) == [["Q"]]
+    # No-solution cases: 2 and 3 queens can never be placed safely
+    assert mod.solve_n_queens(2) == []
+    assert mod.solve_n_queens(3) == []
+    # Known solution counts
+    assert len(mod.solve_n_queens(5)) == 10
+    assert len(mod.solve_n_queens(6)) == 4
+    # Every 5-queens solution is a valid, non-attacking placement
+    for sol in mod.solve_n_queens(5):
+        assert len(sol) == 5 and all(len(row) == 5 for row in sol)
+        assert sum(row.count("Q") for row in sol) == 5
+    # Edge cases: degenerate board sizes
+    assert mod.solve_n_queens(0) == []
+    assert mod.solve_n_queens(-3) == []

@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-82%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-82-orange.svg)
+![Tests](https://img.shields.io/badge/tests-84%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-84-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **82 data structures and algorithms
+A practice and portfolio repository of **84 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 82
+complexity, plus a `__main__` self-check. A pytest suite covers all 84
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–82)
+## Problems — Advanced (31–84)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -133,6 +133,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 80 | Unique Paths | Dynamic Programming | Medium | O(m·n) | O(n) |
 | 81 | Longest Consecutive Sequence | Hash Maps | Medium | O(n) | O(n) |
 | 82 | Find Minimum in Rotated Sorted Array | Binary Search | Medium | O(log n) | O(1) |
+| 83 | Word Ladder | Graphs | Hard | O(N·L²) | O(N·L) |
+| 84 | N-Queens | Backtracking | Hard | O(n!) | O(n) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -150,7 +152,7 @@ dsa-challenges-python/
 ├── stack/                # parentheses, monotonic stack
 ├── linked_list/          # reversal, merging (with ListNode helpers)
 ├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST, diameter
-├── graphs/               # island counting, flood fill (grid DFS), rotting oranges (BFS), pacific-atlantic
+├── graphs/               # island counting, flood fill (grid DFS), rotting oranges (BFS), pacific-atlantic, word ladder (wildcard-pattern BFS)
 ├── heap/                 # kth largest, top-k, merge K lists, two-heap median, task scheduler
 ├── dynamic_programming/  # stairs, coin change, house robber, LCS, decode ways, unique paths (grid DP)
 ├── design/               # LRU cache (hash map + doubly linked list), min stack, time-based key-value store
@@ -158,12 +160,12 @@ dsa-challenges-python/
 ├── advanced_graphs/      # Dijkstra, Bellman-Ford, Kahn topo sort, union-find
 ├── advanced_dp/          # LIS O(n log n), edit distance, knapsack, word break, partition equal subset sum (subset-sum DP)
 ├── intervals/            # merge intervals (sort + sweep), insert interval (three-phase sweep), meeting rooms (adjacent overlap check), non-overlapping intervals (greedy by earliest end)
-├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS), generate parentheses (open/close-count DFS)
+├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS), generate parentheses (open/close-count DFS), N-Queens (attack-set pruning)
 ├── docs/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–82 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–84 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 
@@ -200,8 +202,7 @@ How this set was built, and a sensible order to study it in:
 10. **Weighted graphs** — Dijkstra, Bellman-Ford, Union-Find, topological sort
 11. **Advanced DP** — state design: LIS, edit distance, knapsack, word break
 
-**Next steps I plan to add:** more backtracking
-(N-Queens), more interval problems,
+**Next steps I plan to add:** more interval problems,
 segment tree / BIT, and timed re-solves of the Hard problems above.
 
 ## Notes on style
