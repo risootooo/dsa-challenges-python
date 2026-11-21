@@ -944,3 +944,48 @@ def test_n_queens():
     # Edge cases: degenerate board sizes
     assert mod.solve_n_queens(0) == []
     assert mod.solve_n_queens(-3) == []
+
+
+def test_trapping_rain_water():
+    import pytest
+
+    mod = load("two_pointers/trapping_rain_water.py")
+    assert mod.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]) == 6
+    assert mod.trap([4, 2, 0, 3, 2, 5]) == 9
+    assert mod.trap([3, 0, 3]) == 3
+    assert mod.trap([2, 0, 2]) == 2
+    # No-solution analogue: monotonic or flat maps trap nothing
+    assert mod.trap([1, 2, 3, 4]) == 0
+    assert mod.trap([4, 3, 2, 1]) == 0
+    assert mod.trap([2, 2, 2]) == 0
+    # Edge cases: empty input, single bar
+    assert mod.trap([]) == 0
+    assert mod.trap([5]) == 0
+    with pytest.raises(ValueError):
+        mod.trap([1, -1, 2])
+    # Input must not be mutated
+    data = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+    mod.trap(data)
+    assert data == [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
+
+
+def test_largest_rectangle_in_histogram():
+    import pytest
+
+    mod = load("stack/largest_rectangle_in_histogram.py")
+    assert mod.largest_rectangle_area([2, 1, 5, 6, 2, 3]) == 10
+    assert mod.largest_rectangle_area([2, 4]) == 4
+    assert mod.largest_rectangle_area([5, 5, 5]) == 15
+    assert mod.largest_rectangle_area([1, 2, 3, 4, 5]) == 9
+    assert mod.largest_rectangle_area([5, 4, 3, 2, 1]) == 9
+    assert mod.largest_rectangle_area([6, 2, 5, 4, 5, 1, 6]) == 12
+    # Edge cases: empty input, single bar, all zeroes
+    assert mod.largest_rectangle_area([]) == 0
+    assert mod.largest_rectangle_area([7]) == 7
+    assert mod.largest_rectangle_area([0, 0, 0]) == 0
+    with pytest.raises(ValueError):
+        mod.largest_rectangle_area([2, -1])
+    # Input must not be mutated
+    data = [2, 1, 5, 6, 2, 3]
+    mod.largest_rectangle_area(data)
+    assert data == [2, 1, 5, 6, 2, 3]

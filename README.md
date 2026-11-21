@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-84%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-84-orange.svg)
+![Tests](https://img.shields.io/badge/tests-86%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-86-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **84 data structures and algorithms
+A practice and portfolio repository of **86 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 84
+complexity, plus a `__main__` self-check. A pytest suite covers all 86
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–84)
+## Problems — Advanced (31–86)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -135,6 +135,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 82 | Find Minimum in Rotated Sorted Array | Binary Search | Medium | O(log n) | O(1) |
 | 83 | Word Ladder | Graphs | Hard | O(N·L²) | O(N·L) |
 | 84 | N-Queens | Backtracking | Hard | O(n!) | O(n) |
+| 85 | Trapping Rain Water | Two Pointers | Hard | O(n) | O(1) |
+| 86 | Largest Rectangle in Histogram | Stack | Hard | O(n) | O(n) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -146,10 +148,10 @@ dsa-challenges-python/
 ├── arrays/               # Kadane's, prefix/suffix products, rotation, stock profit, rotate image (transpose + reverse), spiral order, set matrix zeroes
 ├── strings/              # anagrams, prefixes, KMP search, palindromic substrings
 ├── hashmaps/             # two sum, grouping by canonical key, longest consecutive sequence (hash-set starts)
-├── two_pointers/         # palindrome, container, 3Sum
+├── two_pointers/         # palindrome, container, 3Sum, trapping rain water (two-pointer bounds)
 ├── sliding_window/       # longest/minimum window, monotonic-deque maximum, character replacement (feasible-window check)
 ├── binary_search/        # classic, rotated array, 2D matrix, binary search on the answer (Koko), minimum in rotated array
-├── stack/                # parentheses, monotonic stack
+├── stack/                # parentheses, monotonic stack, largest rectangle in histogram
 ├── linked_list/          # reversal, merging (with ListNode helpers)
 ├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST, diameter
 ├── graphs/               # island counting, flood fill (grid DFS), rotting oranges (BFS), pacific-atlantic, word ladder (wildcard-pattern BFS)
@@ -165,7 +167,7 @@ dsa-challenges-python/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–84 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–86 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 
