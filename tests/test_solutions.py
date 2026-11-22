@@ -989,3 +989,46 @@ def test_largest_rectangle_in_histogram():
     data = [2, 1, 5, 6, 2, 3]
     mod.largest_rectangle_area(data)
     assert data == [2, 1, 5, 6, 2, 3]
+
+
+def test_palindromic_substrings():
+    mod = load("dynamic_programming/palindromic_substrings.py")
+    assert mod.count_substrings("abc") == 3
+    assert mod.count_substrings("aaa") == 6
+    assert mod.count_substrings("abba") == 6
+    assert mod.count_substrings("racecar") == 10
+    assert mod.count_substrings("aa") == 3
+    assert mod.count_substrings("ab") == 2
+    # Edge cases: empty string, single character
+    assert mod.count_substrings("") == 0
+    assert mod.count_substrings("a") == 1
+
+
+def test_surrounded_regions():
+    mod = load("graphs/surrounded_regions.py")
+    board = [
+        ["X", "X", "X", "X"],
+        ["X", "O", "O", "X"],
+        ["X", "X", "O", "X"],
+        ["X", "O", "X", "X"],
+    ]
+    assert mod.solve(board) == [
+        ["X", "X", "X", "X"],
+        ["X", "X", "X", "X"],
+        ["X", "X", "X", "X"],
+        ["X", "O", "X", "X"],
+    ]
+    # Input must not be mutated
+    assert board[1][1] == "O"
+    # Border regions survive entirely
+    assert mod.solve([["O", "O"], ["O", "O"]]) == [["O", "O"], ["O", "O"]]
+    assert mod.solve([["X", "O", "X"], ["X", "O", "X"], ["X", "X", "X"]]) == [
+        ["X", "O", "X"],
+        ["X", "O", "X"],
+        ["X", "X", "X"],
+    ]
+    # Edge cases: empty board, single cell
+    assert mod.solve([]) == []
+    assert mod.solve([[]]) == [[]]
+    assert mod.solve([["O"]]) == [["O"]]
+    assert mod.solve([["X"]]) == [["X"]]
