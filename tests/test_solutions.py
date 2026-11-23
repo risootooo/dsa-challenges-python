@@ -1032,3 +1032,44 @@ def test_surrounded_regions():
     assert mod.solve([[]]) == [[]]
     assert mod.solve([["O"]]) == [["O"]]
     assert mod.solve([["X"]]) == [["X"]]
+
+
+def test_evaluate_reverse_polish_notation():
+    mod = load("stack/evaluate_reverse_polish_notation.py")
+    assert mod.eval_rpn(["2", "1", "+", "3", "*"]) == 9
+    assert mod.eval_rpn(["4", "13", "5", "/", "+"]) == 6
+    assert mod.eval_rpn(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]) == 22
+    # Division truncates toward zero, in both signs
+    assert mod.eval_rpn(["7", "2", "/"]) == 3
+    assert mod.eval_rpn(["-7", "2", "/"]) == -3
+    assert mod.eval_rpn(["7", "-2", "/"]) == -3
+    # Operand order for subtraction and division
+    assert mod.eval_rpn(["3", "5", "-"]) == -2
+    assert mod.eval_rpn(["2", "6", "/"]) == 0
+    # Edge cases: single value, single negative value, malformed input
+    assert mod.eval_rpn(["42"]) == 42
+    assert mod.eval_rpn(["-11"]) == -11
+    import pytest
+
+    for bad in ([], ["1", "+"], ["1", "2"], ["1", "x", "+"]):
+        with pytest.raises(ValueError):
+            mod.eval_rpn(bad)
+
+
+def test_meeting_rooms_ii():
+    mod = load("intervals/meeting_rooms_ii.py")
+    assert mod.min_meeting_rooms([[0, 30], [5, 10], [15, 20]]) == 2
+    assert mod.min_meeting_rooms([[7, 10], [2, 4]]) == 1
+    # Touching endpoints can share a room
+    assert mod.min_meeting_rooms([[0, 5], [5, 10], [10, 15]]) == 1
+    # Fully nested meetings each need their own room
+    assert mod.min_meeting_rooms([[1, 10], [2, 9], [3, 8]]) == 3
+    assert mod.min_meeting_rooms([[15, 20], [0, 10], [5, 12], [11, 16]]) == 2
+    assert mod.min_meeting_rooms([[1, 5], [1, 5], [1, 5]]) == 3
+    # Edge cases: empty input, single meeting
+    assert mod.min_meeting_rooms([]) == 0
+    assert mod.min_meeting_rooms([[1, 4]]) == 1
+    # Input must not be mutated
+    data = [[7, 10], [2, 4]]
+    mod.min_meeting_rooms(data)
+    assert data == [[7, 10], [2, 4]]

@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-88%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-88-orange.svg)
+![Tests](https://img.shields.io/badge/tests-90%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-90-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **88 data structures and algorithms
+A practice and portfolio repository of **90 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 88
+complexity, plus a `__main__` self-check. A pytest suite covers all 90
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–88)
+## Problems — Advanced (31–90)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -139,6 +139,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 86 | Largest Rectangle in Histogram | Stack | Hard | O(n) | O(n) |
 | 87 | Palindromic Substrings | Dynamic Programming | Medium | O(n²) | O(1) extra |
 | 88 | Surrounded Regions | Graphs | Medium | O(rows·cols) | O(rows·cols) |
+| 89 | Evaluate Reverse Polish Notation | Stack | Medium | O(n) | O(n) |
+| 90 | Meeting Rooms II | Intervals | Medium | O(n log n) | O(n) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -153,7 +155,7 @@ dsa-challenges-python/
 ├── two_pointers/         # palindrome, container, 3Sum, trapping rain water (two-pointer bounds)
 ├── sliding_window/       # longest/minimum window, monotonic-deque maximum, character replacement (feasible-window check)
 ├── binary_search/        # classic, rotated array, 2D matrix, binary search on the answer (Koko), minimum in rotated array
-├── stack/                # parentheses, monotonic stack, largest rectangle in histogram
+├── stack/                # parentheses, monotonic stack, largest rectangle in histogram, reverse polish notation (operand stack)
 ├── linked_list/          # reversal, merging (with ListNode helpers)
 ├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST, diameter
 ├── graphs/               # island counting, flood fill (grid DFS), rotting oranges (BFS), pacific-atlantic, word ladder (wildcard-pattern BFS), surrounded regions (border DFS)
@@ -163,13 +165,13 @@ dsa-challenges-python/
 ├── tries/                # trie implementation, word search II
 ├── advanced_graphs/      # Dijkstra, Bellman-Ford, Kahn topo sort, union-find
 ├── advanced_dp/          # LIS O(n log n), edit distance, knapsack, word break, partition equal subset sum (subset-sum DP)
-├── intervals/            # merge intervals (sort + sweep), insert interval (three-phase sweep), meeting rooms (adjacent overlap check), non-overlapping intervals (greedy by earliest end)
+├── intervals/            # merge intervals (sort + sweep), insert interval (three-phase sweep), meeting rooms (adjacent overlap check), non-overlapping intervals (greedy by earliest end), meeting rooms II (min-heap of end times)
 ├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS), generate parentheses (open/close-count DFS), N-Queens (attack-set pruning)
 ├── docs/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–88 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–90 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 
