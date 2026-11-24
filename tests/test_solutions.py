@@ -1073,3 +1073,46 @@ def test_meeting_rooms_ii():
     data = [[7, 10], [2, 4]]
     mod.min_meeting_rooms(data)
     assert data == [[7, 10], [2, 4]]
+
+
+def test_binary_tree_zigzag_level_order_traversal():
+    mod = load("trees/binary_tree_zigzag_level_order_traversal.py")
+    tree = mod.TreeNode(3, mod.TreeNode(9), mod.TreeNode(20, mod.TreeNode(15), mod.TreeNode(7)))
+    assert mod.zigzag_level_order(tree) == [[3], [20, 9], [15, 7]]
+    deep = mod.TreeNode(
+        1,
+        mod.TreeNode(2, mod.TreeNode(4), mod.TreeNode(5)),
+        mod.TreeNode(3, mod.TreeNode(6), mod.TreeNode(7)),
+    )
+    assert mod.zigzag_level_order(deep) == [[1], [3, 2], [4, 5, 6, 7]]
+    # A left-only chain reads one value per level, direction irrelevant
+    chain = mod.TreeNode(1, mod.TreeNode(2, mod.TreeNode(3)))
+    assert mod.zigzag_level_order(chain) == [[1], [2], [3]]
+    # Edge cases: empty tree, single node
+    assert mod.zigzag_level_order(None) == []
+    assert mod.zigzag_level_order(mod.TreeNode(42)) == [[42]]
+
+
+def test_word_dictionary():
+    mod = load("tries/word_dictionary.py")
+    dictionary = mod.WordDictionary()
+    dictionary.add_word("bad")
+    dictionary.add_word("dad")
+    dictionary.add_word("mad")
+    assert dictionary.search("pad") is False
+    assert dictionary.search(".ad") is True
+    assert dictionary.search("b..") is True
+    assert dictionary.search("bad") is True
+    # Length must match exactly: prefixes and extensions do not match
+    assert dictionary.search("ba") is False
+    assert dictionary.search("b.") is False
+    assert dictionary.search("....") is False
+    # A pattern of only dots matches any stored word of that length
+    assert dictionary.search("...") is True
+    # Edge cases: empty dictionary, empty pattern, re-adding a word
+    empty = mod.WordDictionary()
+    assert empty.search("a") is False
+    assert empty.search(".") is False
+    assert empty.search("") is False
+    dictionary.add_word("bad")
+    assert dictionary.search("bad") is True
