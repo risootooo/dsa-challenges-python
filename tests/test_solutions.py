@@ -1116,3 +1116,41 @@ def test_word_dictionary():
     assert empty.search("") is False
     dictionary.add_word("bad")
     assert dictionary.search("bad") is True
+
+
+def test_jump_game():
+    mod = load("dynamic_programming/jump_game.py")
+    assert mod.can_jump([2, 3, 1, 1, 4]) is True
+    assert mod.can_jump([3, 2, 1, 0, 4]) is False
+    # A zero in the middle is fine when a longer jump clears it
+    assert mod.can_jump([2, 0, 0]) is True
+    assert mod.can_jump([1, 0, 1]) is False
+    # Exact-length final jump and an overshooting jump both reach
+    assert mod.can_jump([1, 1, 1, 1]) is True
+    assert mod.can_jump([5, 0, 0, 0, 0]) is True
+    # Edge cases: empty input, single element (already at the end)
+    assert mod.can_jump([]) is False
+    assert mod.can_jump([0]) is True
+    assert mod.can_jump([2]) is True
+
+
+def test_letter_combinations_of_a_phone_number():
+    mod = load("backtracking/letter_combinations_of_a_phone_number.py")
+    assert mod.letter_combinations("23") == [
+        "ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf",
+    ]
+    assert mod.letter_combinations("2") == ["a", "b", "c"]
+    # Four-letter keys: 7 and 9 each produce four combinations alone
+    assert mod.letter_combinations("7") == ["p", "q", "r", "s"]
+    assert mod.letter_combinations("79") == [
+        "pw", "px", "py", "pz", "qw", "qx", "qy", "qz",
+        "rw", "rx", "ry", "rz", "sw", "sx", "sy", "sz",
+    ]
+    assert len(mod.letter_combinations("234")) == 27
+    # Edge cases: empty input, invalid digits raise
+    assert mod.letter_combinations("") == []
+    import pytest
+
+    for bad in ("1", "0", "2a"):
+        with pytest.raises(ValueError):
+            mod.letter_combinations(bad)

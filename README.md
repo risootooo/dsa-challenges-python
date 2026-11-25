@@ -1,11 +1,11 @@
 # DSA Challenges — Python
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
-![Tests](https://img.shields.io/badge/tests-92%20passing-brightgreen.svg)
-![Problems](https://img.shields.io/badge/problems-92-orange.svg)
+![Tests](https://img.shields.io/badge/tests-94%20passing-brightgreen.svg)
+![Problems](https://img.shields.io/badge/problems-94-orange.svg)
 ![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-A practice and portfolio repository of **92 data structures and algorithms
+A practice and portfolio repository of **94 data structures and algorithms
 problems solved in clean, typed Python 3**, organised by topic — from
 foundations (arrays, hash maps, two pointers) through an **advanced tier**:
 system-design data structures (LRU cache), tries, weighted graph algorithms
@@ -14,7 +14,7 @@ and advanced dynamic programming.
 
 Each solution is a runnable module — not a platform snippet — with a
 docstring stating the problem, the approach, and its time/space
-complexity, plus a `__main__` self-check. A pytest suite covers all 92
+complexity, plus a `__main__` self-check. A pytest suite covers all 94
 solutions, and the companion docs distil the reusable patterns:
 
 - 📖 **[Pattern Playbook](docs/PATTERNS.md)** — templates for two pointers,
@@ -73,7 +73,7 @@ finance-tech roles.
 | 29 | Coin Change | Dynamic Programming | Medium | O(amount·coins) | O(amount) |
 | 30 | House Robber | Dynamic Programming | Medium | O(n) | O(1) |
 
-## Problems — Advanced (31–92)
+## Problems — Advanced (31–94)
 
 The advanced tier targets the patterns that separate screening rounds from
 final rounds: designing data structures under strict complexity budgets,
@@ -143,6 +143,8 @@ weighted graph algorithms, and DP where the state definition is the problem.
 | 90 | Meeting Rooms II | Intervals | Medium | O(n log n) | O(n) |
 | 91 | Binary Tree Zigzag Level Order Traversal | Trees | Medium | O(n) | O(n) |
 | 92 | Design Add and Search Words Data Structure | Tries | Medium | O(L) add, O(26^d · L) search worst | O(total chars) |
+| 93 | Jump Game | Dynamic Programming | Medium | O(n) | O(1) |
+| 94 | Letter Combinations of a Phone Number | Backtracking | Medium | O(4^n · n) | O(n) |
 
 Difficulty is the commonly used Easy / Medium / Hard grading for these
 well-known problem patterns.
@@ -162,18 +164,18 @@ dsa-challenges-python/
 ├── trees/                # depth, inversion, BFS order, serialization, max path sum, BST validation, LCA, kth smallest in BST, diameter, zigzag level order
 ├── graphs/               # island counting, flood fill (grid DFS), rotting oranges (BFS), pacific-atlantic, word ladder (wildcard-pattern BFS), surrounded regions (border DFS)
 ├── heap/                 # kth largest, top-k, merge K lists, two-heap median, task scheduler
-├── dynamic_programming/  # stairs, coin change, house robber, LCS, decode ways, unique paths (grid DP), palindromic substrings (expand around centre)
+├── dynamic_programming/  # stairs, coin change, house robber, LCS, decode ways, unique paths (grid DP), palindromic substrings (expand around centre), jump game (greedy furthest-reach)
 ├── design/               # LRU cache (hash map + doubly linked list), min stack, time-based key-value store
 ├── tries/                # trie implementation, word search II, word dictionary (wildcard '.' search)
 ├── advanced_graphs/      # Dijkstra, Bellman-Ford, Kahn topo sort, union-find
 ├── advanced_dp/          # LIS O(n log n), edit distance, knapsack, word break, partition equal subset sum (subset-sum DP)
 ├── intervals/            # merge intervals (sort + sweep), insert interval (three-phase sweep), meeting rooms (adjacent overlap check), non-overlapping intervals (greedy by earliest end), meeting rooms II (min-heap of end times)
-├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS), generate parentheses (open/close-count DFS), N-Queens (attack-set pruning)
+├── backtracking/         # combination sum (DFS with pruning), permutations (used-flag DFS), word search (grid DFS), subsets (start-index DFS), generate parentheses (open/close-count DFS), N-Queens (attack-set pruning), letter combinations (keypad DFS)
 ├── docs/
 │   ├── PATTERNS.md       # reusable pattern templates + when to use each
 │   └── COMPLEXITY.md     # Big-O cheat sheet for structures & algorithms here
 └── tests/
-    ├── test_solutions.py # pytest suite: problems 1–92 (foundations + later additions)
+    ├── test_solutions.py # pytest suite: problems 1–94 (foundations + later additions)
     └── test_advanced.py  # pytest suite: problems 31–50
 ```
 
