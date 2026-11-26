@@ -1154,3 +1154,56 @@ def test_letter_combinations_of_a_phone_number():
     for bad in ("1", "0", "2a"):
         with pytest.raises(ValueError):
             mod.letter_combinations(bad)
+
+
+def test_construct_binary_tree_from_preorder_and_inorder():
+    mod = load("trees/construct_binary_tree_from_preorder_and_inorder.py")
+    tree = mod.build_tree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
+    assert mod.level_order(tree) == [3, 9, 20, None, None, 15, 7]
+    # Left and right chains
+    assert mod.level_order(mod.build_tree([1, 2, 3], [3, 2, 1])) == [1, 2, None, 3]
+    assert mod.level_order(mod.build_tree([1, 2, 3], [1, 2, 3])) == [1, None, 2, None, 3]
+    # A balanced tree round-trips through both traversals
+    balanced = mod.build_tree([1, 2, 4, 5, 3, 6, 7], [4, 2, 5, 1, 6, 3, 7])
+    assert mod.level_order(balanced) == [1, 2, 3, 4, 5, 6, 7]
+    # Edge cases: empty traversals, single node
+    assert mod.build_tree([], []) is None
+    single = mod.build_tree([42], [42])
+    assert single is not None and single.val == 42
+    assert single.left is None and single.right is None
+    # Inconsistent inputs raise: length, value set, duplicates, structure
+    import pytest
+
+    for bad_pre, bad_in in (
+        ([1, 2], [1]),
+        ([1, 2], [1, 3]),
+        ([1, 1], [1, 1]),
+        ([2, 1, 3], [3, 2, 1]),
+    ):
+        with pytest.raises(ValueError):
+            mod.build_tree(bad_pre, bad_in)
+    # Inputs must not be mutated
+    pre, ino = [3, 9, 20, 15, 7], [9, 3, 15, 20, 7]
+    mod.build_tree(pre, ino)
+    assert pre == [3, 9, 20, 15, 7] and ino == [9, 3, 15, 20, 7]
+
+
+def test_find_peak_element():
+    mod = load("binary_search/find_peak_element.py")
+    assert mod.find_peak_element([1, 2, 3, 1]) == 2
+    assert mod.find_peak_element([1, 2, 1, 3, 5, 6, 4]) == 5
+    # Monotone lists peak at an endpoint
+    assert mod.find_peak_element([1, 2, 3, 4]) == 3
+    assert mod.find_peak_element([4, 3, 2, 1]) == 0
+    assert mod.find_peak_element([2, 1]) == 0
+    assert mod.find_peak_element([1, 2]) == 1
+    # Every returned index is a genuine peak on multi-peak inputs
+    for nums in ([1, 3, 2, 4, 1, 5], [5, 1, 4, 2, 3], [1, 5, 2, 6, 3, 7, 4]):
+        idx = mod.find_peak_element(nums)
+        assert idx is not None
+        left = nums[idx - 1] if idx > 0 else float("-inf")
+        right = nums[idx + 1] if idx < len(nums) - 1 else float("-inf")
+        assert nums[idx] > left and nums[idx] > right
+    # Edge cases: empty input, single element
+    assert mod.find_peak_element([]) is None
+    assert mod.find_peak_element([42]) == 0
