@@ -1207,3 +1207,38 @@ def test_find_peak_element():
     # Edge cases: empty input, single element
     assert mod.find_peak_element([]) is None
     assert mod.find_peak_element([42]) == 0
+
+
+def test_k_closest_points_to_origin():
+    mod = load("heap/k_closest_points_to_origin.py")
+    def as_set(result):
+        return {tuple(p) for p in result}
+    assert as_set(mod.k_closest([[1, 3], [-2, 2]], 1)) == {(-2, 2)}
+    assert as_set(mod.k_closest([[3, 3], [5, -1], [-2, 4]], 2)) == {(3, 3), (-2, 4)}
+    assert as_set(mod.k_closest([[0, 0], [1, 1], [2, 2]], 2)) == {(0, 0), (1, 1)}
+    # Ties: any equally-close point is acceptable, count must be k
+    tied = mod.k_closest([[1, 0], [0, 1], [-1, 0], [0, -1]], 2)
+    assert len(tied) == 2 and all(p[0] * p[0] + p[1] * p[1] == 1 for p in tied)
+    # Edge cases: empty input, single point, non-positive k, k beyond n
+    assert mod.k_closest([], 3) == []
+    assert mod.k_closest([[5, 5]], 1) == [[5, 5]]
+    assert mod.k_closest([[1, 1], [2, 2]], 0) == []
+    assert as_set(mod.k_closest([[2, 2], [1, 1]], 5)) == {(1, 1), (2, 2)}
+
+
+def test_permutation_in_string():
+    mod = load("sliding_window/permutation_in_string.py")
+    assert mod.check_inclusion("ab", "eidbaooo") is True
+    assert mod.check_inclusion("ab", "eidboaoo") is False
+    assert mod.check_inclusion("adc", "dcda") is True
+    assert mod.check_inclusion("hello", "ooolleoooleh") is False
+    assert mod.check_inclusion("ab", "ab") is True
+    # Repeated characters must match counts, not just membership
+    assert mod.check_inclusion("aab", "baa") is True
+    assert mod.check_inclusion("aab", "bab") is False
+    # Edge cases: empty pattern, single character, pattern longer than text
+    assert mod.check_inclusion("", "abc") is True
+    assert mod.check_inclusion("a", "a") is True
+    assert mod.check_inclusion("a", "b") is False
+    assert mod.check_inclusion("abc", "ab") is False
+    assert mod.check_inclusion("abc", "") is False
