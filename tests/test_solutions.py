@@ -1242,3 +1242,62 @@ def test_permutation_in_string():
     assert mod.check_inclusion("a", "b") is False
     assert mod.check_inclusion("abc", "ab") is False
     assert mod.check_inclusion("abc", "") is False
+
+
+def test_subtree_of_another_tree():
+    mod = load("trees/subtree_of_another_tree.py")
+    root = mod.TreeNode(
+        3,
+        mod.TreeNode(4, mod.TreeNode(1), mod.TreeNode(2)),
+        mod.TreeNode(5),
+    )
+    sub = mod.TreeNode(4, mod.TreeNode(1), mod.TreeNode(2))
+    assert mod.is_subtree(root, sub) is True
+    # Same values but root's 2 carries an extra left child 0: not a match
+    root_extra = mod.TreeNode(
+        3,
+        mod.TreeNode(4, mod.TreeNode(1), mod.TreeNode(2, mod.TreeNode(0))),
+        mod.TreeNode(5),
+    )
+    assert mod.is_subtree(root_extra, sub) is False
+    # A tree is a subtree of itself; match can sit deep on either side
+    assert mod.is_subtree(root, root) is True
+    deep = mod.TreeNode(1, mod.TreeNode(2), mod.TreeNode(3, mod.TreeNode(4, mod.TreeNode(5))))
+    assert mod.is_subtree(deep, mod.TreeNode(4, mod.TreeNode(5))) is True
+    assert mod.is_subtree(deep, mod.TreeNode(4, None, mod.TreeNode(5))) is False
+    # Repeated values: structure, not value presence, decides
+    ones = mod.TreeNode(1, mod.TreeNode(1), mod.TreeNode(1))
+    assert mod.is_subtree(ones, mod.TreeNode(1)) is True
+    # No node in `ones` has exactly one child, so a one-child sub never matches
+    assert mod.is_subtree(ones, mod.TreeNode(1, mod.TreeNode(1))) is False
+    # The identical full tree matches; a deeper left spine does not
+    assert mod.is_subtree(ones, mod.TreeNode(1, mod.TreeNode(1), mod.TreeNode(1))) is True
+    assert mod.is_subtree(ones, mod.TreeNode(1, mod.TreeNode(1, mod.TreeNode(1)), mod.TreeNode(1))) is False
+    # Edge cases: empty trees, single nodes
+    assert mod.is_subtree(None, None) is True
+    assert mod.is_subtree(mod.TreeNode(1), None) is True
+    assert mod.is_subtree(None, mod.TreeNode(1)) is False
+    assert mod.is_subtree(mod.TreeNode(1), mod.TreeNode(1)) is True
+    assert mod.is_subtree(mod.TreeNode(1), mod.TreeNode(2)) is False
+
+
+def test_target_sum():
+    mod = load("dynamic_programming/target_sum.py")
+    assert mod.find_target_sum_ways([1, 1, 1, 1, 1], 3) == 5
+    assert mod.find_target_sum_ways([1], 1) == 1
+    assert mod.find_target_sum_ways([1, 2, 3], 0) == 2
+    assert mod.find_target_sum_ways([1, 2, 3, 4, 5], 5) == 3
+    # Zeros multiply the count: each 0 takes either sign freely
+    assert mod.find_target_sum_ways([0, 0, 1], 1) == 4
+    assert mod.find_target_sum_ways([0], 0) == 2
+    # Negative targets are symmetric to positive ones
+    assert mod.find_target_sum_ways([1, 1, 1, 1, 1], -3) == 5
+    assert mod.find_target_sum_ways([2], -2) == 1
+    # No-solution cases: unreachable magnitude and wrong parity
+    assert mod.find_target_sum_ways([1, 2], 10) == 0
+    assert mod.find_target_sum_ways([1, 2], 2) == 0
+    assert mod.find_target_sum_ways([1], 0) == 0
+    # Edge cases: empty input, single element
+    assert mod.find_target_sum_ways([], 0) == 1
+    assert mod.find_target_sum_ways([], 5) == 0
+    assert mod.find_target_sum_ways([7], 7) == 1
